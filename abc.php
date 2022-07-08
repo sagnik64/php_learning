@@ -8,7 +8,7 @@ Comment
 echo "<h3><strong>PHP Learning</strong></h3><br><br><br><br>";
 
 /*Data types in PHP
-Integer, String, Float, Boolean, Array, Object, Null
+Integer, String, Double, Boolean, Array, Object, Null
 */
 $a = 10;
 $b = "Hello";
@@ -107,7 +107,7 @@ $colors = ["red","green","blue","yellow"];
 
 /* foreach loop
     here variable is written first then the iterator is written
-    for($variable as $iterator) {
+    foreach($variable as $iterator) {
 
     }
 */
@@ -338,5 +338,74 @@ $remoteTV1 = new TV_remote("Remote 2");
 $remoteAC1->displayRemoteType();
 $remoteTV1->displayRemoteType();
 
+print_r("\n\n");
 
+
+
+trait morning_greetings{
+
+    function greetings_m() {
+        echo "Good Morning<br>";
+    }
+}
+    
+trait afternoon_greetings {
+    function greetings_af(){
+        echo "Good Afternoon<br>";
+    }
+}
+    
+trait evening_greetings {
+
+    function greetings_eve() {
+        echo "Good Evening<br>";
+    }
+}
+    
+trait night_greetings {
+    
+    function greetings_n() {
+        echo "Good Night<br>";
+    }
+}
+    
+        
+class Greet {
+    use morning_greetings; use afternoon_greetings;
+    use evening_greetings; use night_greetings;
+    
+    public $day;
+    
+    function __construct($day) {
+        $this->day = $day;
+        
+    }
+    
+    function show() {
+        // print_r("In show function...\n");
+        switch($this->day) {
+        
+            case "Monday":
+                $this->greetings_m();
+                break;
+        
+            case "Tuesday":
+                $this->greetings_af();
+                break;
+            case "Wednesday":
+                $this->greetings_eve();
+                break;
+            default: 
+                echo "Ok Bye";
+        }    
+    }    
+}
+    
+       
+$gt1 = new Greet("Monday");
+$gt2 = new Greet("Tuesday");
+$gt3 = new Greet("Wednesday");
+$gt1->show();
+$gt2->show();
+$gt3->show();
 ?>
